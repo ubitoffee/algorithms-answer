@@ -10,9 +10,7 @@ public class CrazyBot {
     public double getProbability(int n, int east, int west, int south, int north) {
         percentage = new double[]{ east/100, west/100, south/100, north/100 };
         
-        double result = recursive(50, 50, n);
-        
-        return result;
+        return recursive(50, 50, n);
     }
     
     private double recursive(int x, int y, int n) {
@@ -21,8 +19,9 @@ public class CrazyBot {
         
         double ret = 0;        
         for (int i = 0; i < percentage.length; i++) {
-            ret = recursive(x + vx[i], y + vy[i], n - 1) * percentage[i];
+            ret += recursive(x + vx[i], y + vy[i], n - 1) * percentage[i];
         }
+        grid[x][y] = true;
         
         return ret;
     }
